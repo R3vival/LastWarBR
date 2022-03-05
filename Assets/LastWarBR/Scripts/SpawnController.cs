@@ -46,6 +46,8 @@ namespace LastWarBR
                     {
                         GameObject temp = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
 
+                        temp.name = "Player_" + DataBase.Player.playerName;
+
                         spawnedPlayer = temp.transform.Find("Controller").GetComponent<PlayerController>();
                         spawnedPlayer.Init();
             }
