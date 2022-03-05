@@ -43,12 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4890baa34e2bdbd499331e3a922cfc5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
-  health: 250
-  moveSpeed: 0
-  turnSpeed: 0
+  characterStats:
+    playerName: 
+    health: 0
+    moveSpeed: 0
+    turnSpeed: 0
+    SelectedObject: {fileID: 0}
+    inventory: []
   rigidBody: {fileID: 933685268244354584}
-  PlayerView: {fileID: 933685266502551764}
+  playerView: {fileID: 933685266502551761}
 --- !u!1 &933685266372010496
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,20 +421,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!136 &933685266932964183
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7742174275821443676}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3958208
-  m_Height: 1.6986141
-  m_Direction: 1
-  m_Center: {x: 9.94029e-17, y: 0.76055217, z: 0.0273502}
 --- !u!1 &933685266998233323
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +479,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &933685266998233316
 MonoBehaviour:
@@ -901,6 +890,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!136 &933685266932964183
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742174275821443676}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3958208
+  m_Height: 1.6986141
+  m_Direction: 1
+  m_Center: {x: 9.94029e-17, y: 0.76055217, z: 0.0273502}
 --- !u!1001 &933685266932964186
 PrefabInstance:
   m_ObjectHideFlags: 0

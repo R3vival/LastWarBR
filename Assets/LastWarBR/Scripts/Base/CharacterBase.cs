@@ -15,6 +15,7 @@ namespace LastWarBR
         #region Declarations
         [Header("Basic Components")]
         [SerializeField] protected CharacterStats characterStats;
+
         [Header("Physics Components")]
         [SerializeField] protected Rigidbody rigidBody;
 
@@ -23,6 +24,7 @@ namespace LastWarBR
         [SerializeField] public Action<short> GainHealth;
 
         #endregion
+        
         #region Functions
         protected void Init()
         {            

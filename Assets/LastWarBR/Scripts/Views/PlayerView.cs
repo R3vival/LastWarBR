@@ -18,7 +18,7 @@ namespace LastWarBR
         #region Unity Funtions
         #endregion
         #region Function
-        private void Init(CharacterBase newPlayer)
+        public void Init(CharacterBase newPlayer)
         {
             player = newPlayer;
 
