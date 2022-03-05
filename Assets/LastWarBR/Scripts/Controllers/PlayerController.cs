@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace LastWarBR
 {
-    public class PlayerController : PlayerBase
+    public class PlayerController : CharacterBase
     {
 
         [SerializeField] private GameObject PlayerView;
 
         private void Start()
         {
+
         }
     }
 }

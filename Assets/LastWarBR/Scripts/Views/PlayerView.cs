@@ -1,18 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerView : MonoBehaviour
+namespace LastWarBR
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerView : MonoBehaviour
     {
-        
-    }
+        #region Declarations
+        [SerializeField] private TMP_Text nameDisplay;
+        [SerializeField] private TMP_Text healthDisplayAmmount;
+        [SerializeField] private Slider healthSlider;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private CharacterBase player;
+        #endregion
+        #region Unity Funtions
+        #endregion
+        #region Function
+        private void Init(CharacterBase newPlayer)
+        {
+            player = newPlayer;
+
+            FindReferences();
+
+            nameDisplay.text = player.GetName().ToString();
+
+            healthDisplayAmmount.text = player.GetHealthPoints().ToString();
+            healthSlider.maxValue = player.GetHealthPoints();
+            healthSlider.value = player.GetHealthPoints();
+        }
+        private void FindReferences()
+        {
+            
+        }
+        public void UpdateName(string newName)
+        {
+            nameDisplay.text = newName;
+        }
+        public void UpdateHealth(short health)
+        {
+            healthDisplayAmmount.text = health.ToString();
+
+
+        }
+        #endregion
     }
 }

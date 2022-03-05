@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8435b75be76f8ec44824f7e19a4f9778, type: 3}
+  m_Name: DataBase
+  m_EditorClassIdentifier: 
+  Player:
+    playerName: R3vival
+    health: 250
+    moveSpeed: 10
+    turnSpeed: 5
+    SelectedObject: {fileID: 0}
+    inventory: []
+  Enemys:
+  - playerName: ZombieR3vival
+    health: 100
+    moveSpeed: 9
+    turnSpeed: 3
+    SelectedObject: {fileID: 0}
+    inventory: []
+  Objects:
+  - {fileID: 11400000, guid: b415463b90620f6469ad4c3fcd367814, type: 2}
+  - {fileID: 11400000, guid: 476590667ecdd9f4f855c305a58a40fe, type: 2}
+  - {fileID: 0}
