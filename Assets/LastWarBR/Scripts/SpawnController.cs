@@ -38,30 +38,28 @@ namespace LastWarBR
         }
         private void SpawnPlayer(CharacterType type)
         {
+            GameObject spawnedCharacter = null;
             switch (type)
             {
                 default:
                 case CharacterType.Player:
-                    if (spawnedPlayer == null)
-                    {
-                        GameObject temp = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+                    spawnedCharacter = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
 
-                        temp.name = "Player_" + DataBase.Player.playerName;
-
-                        spawnedPlayer = temp.transform.Find("Controller").GetComponent<PlayerController>();
-                        spawnedPlayer.Init();
-            }
-                    else
-                    {
-                        spawnedPlayer.Respawn(spawnPoint);
-                    }
+                    spawnedCharacter.name = "Player_" + DataBase.Player.playerName;
+                    spawnedCharacter.tag = "Player";
+                    spawnedPlayer = spawnedCharacter.transform.Find("Controller").GetComponent<PlayerController>();
+                    spawnedPlayer.Init();
                     break;
                 case CharacterType.Enemy:
                     break;
                 case CharacterType.NPC:
                     break;
             }
-            
+            GameManager.Instance.OnSpawn?.Invoke(spawnedCharacter,type);
+        }
+        private void Respawn()
+        {
+            spawnedPlayer.Respawn(spawnPoint);
         }
         #endregion
     }

@@ -13,6 +13,7 @@ namespace LastWarBR
 
         //Actions
         public Action Initialize;
+        public Action<GameObject, CharacterType> OnSpawn;
         #endregion
         #region Unity Functions
         private void Awake()
