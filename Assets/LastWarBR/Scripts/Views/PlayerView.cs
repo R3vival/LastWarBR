@@ -9,6 +9,7 @@ namespace LastWarBR
     public class PlayerView : MonoBehaviour
     {
         #region Declarations
+        #region HUD
         /// <summary>
         /// HUD - Display name at gameplay
         /// </summary>
@@ -21,7 +22,8 @@ namespace LastWarBR
         /// Health bar display at gameplay
         /// </summary>
         [SerializeField] private Slider healthSlider;
-
+        #endregion
+        [SerializeField] private Animator animator;
         /// <summary>
         /// Player information
         /// </summary>
@@ -43,9 +45,17 @@ namespace LastWarBR
 
             nameDisplay.text = player.GetName().ToString();
 
-            healthDisplayAmmount.text = player.GetHealthPoints().ToString();
-            healthSlider.maxValue = player.GetHealthPoints();
-            healthSlider.value = player.GetHealthPoints();
+            healthDisplayAmmount.text = player.GetMaxHealthPoints().ToString();
+            healthSlider.maxValue = player.GetMaxHealthPoints();
+            healthSlider.value = player.GetMaxHealthPoints();
+
+            player.Shooting -= PlayAnim;
+            player.IsMoving -= PlayAnim;
+            player.IsNotMoving -= StopAnim;
+
+            player.Shooting += PlayAnim;
+            player.IsMoving += PlayAnim;
+            player.IsNotMoving += StopAnim;
         }
         /// <summary>
         /// Find all the references needed for the correct functionality of Player view behaviour
@@ -66,6 +76,10 @@ namespace LastWarBR
             {
                 healthDisplayAmmount = healthSlider.transform.Find("HealthLabel").GetComponent<TMP_Text>();
             }
+            if(animator == null)
+            {
+                animator = gameObject.GetComponent<Animator>();
+            }
         }
         /// <summary>
         /// Function called to update the HUD name displayed
@@ -84,6 +98,23 @@ namespace LastWarBR
             healthDisplayAmmount.text = health.ToString();
 
             healthSlider.value = health;
+        }
+
+        private void PlayAnim(int action)
+        {
+            animator.SetBool("Moving", true);
+
+            float currentBlend = animator.GetFloat("Blend");
+
+            if(currentBlend != action)
+            {
+                currentBlend = (currentBlend + action) / 2;
+            }
+            animator.SetFloat("Blend", currentBlend);
+        }
+        private void StopAnim()
+        {
+            animator.SetBool("Moving", false);
         }
         #endregion
     }

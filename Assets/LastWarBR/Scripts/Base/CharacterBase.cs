@@ -20,8 +20,12 @@ namespace LastWarBR
         [SerializeField] protected Rigidbody rigidBody;
 
         //Actions
-        [SerializeField] public Action<short> LoseHealth;
-        [SerializeField] public Action<short> GainHealth;
+        public Action<short> LoseHealth;
+        public Action<short> GainHealth;
+        public Action<int> IsMoving;
+        public Action<int> Shooting;
+
+        public Action IsNotMoving;
 
         #endregion
         #region Unity Functions
@@ -30,7 +34,7 @@ namespace LastWarBR
             BulletController bullet = collision.gameObject.GetComponent<BulletController>();
             if(collision.gameObject.tag == "Bullet")
             {
-
+                //TODO die
             }
         }
         #endregion
@@ -54,6 +58,8 @@ namespace LastWarBR
         /// the basic points healed ar 50 pts
         /// </summary>
         /// <param name="pointsHealed"></param>
+        
+        #region Get PlayerStat Functions
         protected void HealPlayer(short pointsHealed = 50)
         {
             characterStats.health += pointsHealed;
@@ -92,6 +98,14 @@ namespace LastWarBR
             characterStats.playerName = newName;
         }
         /// <summary>
+        /// Get the max health of the player or enemy
+        /// </summary>
+        /// <returns></returns>
+        public short GetMaxHealthPoints()
+        {
+            return characterStats.maxHealth;
+        }
+        /// <summary>
         /// Get the current health of the player or enemy
         /// </summary>
         /// <returns></returns>
@@ -126,6 +140,9 @@ namespace LastWarBR
             characterStats.inventory.Add(newObject);
             
         }
+        #endregion
+
+       
         #endregion
     }
 }

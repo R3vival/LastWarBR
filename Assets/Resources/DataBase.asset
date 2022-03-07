@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player:
     playerName: R3vival
+    maxHealth: 250
     health: 250
     moveSpeed: 10
     turnSpeed: 5
@@ -21,6 +22,7 @@ MonoBehaviour:
     inventory: []
   Enemys:
   - playerName: ZombieR3vival
+    maxHealth: 0
     health: 100
     moveSpeed: 9
     turnSpeed: 3

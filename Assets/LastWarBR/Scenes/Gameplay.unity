@@ -1495,8 +1495,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0a5ad14dee744b18c113bb0f8ba241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   rigidbody: {fileID: 0}
-  speed: 20
+  speed: 5
+  rotationSpeed: 600
   canMove: 0
 --- !u!1 &1026158612
 GameObject:
@@ -1767,30 +1769,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EventSystem: {fileID: 0}
-  m_InputOverride: {fileID: 0}
-  m_DefaultInput: {fileID: 0}
-  m_MoveRepeatDelay: 0.5
-  m_MoveRepeatRate: 0.1
-  m_TrackedDeviceDragThresholdMultiplier: 2
-  m_ActionsAsset: {fileID: -944628639613478452, guid: 52ca4c907539a42758e4c1a8708a4d14, type: 3}
-  m_PointAction: {fileID: 0}
-  m_MoveAction: {fileID: 0}
-  m_SubmitAction: {fileID: 0}
-  m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 0}
-  m_MiddleClickAction: {fileID: 0}
-  m_RightClickAction: {fileID: 0}
-  m_ScrollWheelAction: {fileID: 0}
-  m_TrackedDevicePositionAction: {fileID: 0}
-  m_TrackedDeviceOrientationAction: {fileID: 0}
-  m_DeselectOnBackgroundClick: 1
-  m_PointerBehavior: 0
-  m_OwnsEnabledState: 0
-  m_ActionsHooked: 0
-  m_CurrentPointerId: -1
-  m_CurrentPointerIndex: -1
-  m_CurrentPointerType: 0
 --- !u!114 &1318313982
 MonoBehaviour:
   m_ObjectHideFlags: 0

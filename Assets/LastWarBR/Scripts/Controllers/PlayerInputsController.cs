@@ -6,14 +6,17 @@ namespace LastWarBR{
     public class PlayerInputsController : MonoBehaviour
     {
         #region Declarations
+        [SerializeField] private PlayerController player;
         [SerializeField] private new Rigidbody rigidbody;
         [SerializeField] private float speed = 20f;
         [SerializeField] private float rotationSpeed = 600f;
         [SerializeField] private bool canMove;
+            
+        private float shoot;
         private float movementY;
         private float movementX;
-
-        public Action IsMovinG;
+        private float currentSpeed;
+        private float shootMovSpeed;
         #endregion
         #region Unity Functions
         private void Awake()
@@ -26,10 +29,19 @@ namespace LastWarBR{
             {
                 ProcessInputs();
 
+                Debug.Log("The Jump Btn value is: " + shoot);
+
                 Vector3 movement = new Vector3(movementX, 0f, movementY);
                 movement.Normalize();
+
                 //Movement
-                rigidbody.transform.Translate(movement * speed * Time.deltaTime, Space.World);
+                currentSpeed = speed;
+                if (shoot > 0)
+                {
+                    currentSpeed = shootMovSpeed;
+                }
+
+                rigidbody.transform.Translate(movement * currentSpeed * Time.deltaTime, Space.World);
 
                 //Rotation
                 if(movement != Vector3.zero)
@@ -41,7 +53,15 @@ namespace LastWarBR{
                         newRotation,
                         rotationSpeed * Time.deltaTime);
 
-
+                    player.IsMoving?.Invoke(0);
+                }
+                else
+                {
+                    player.IsNotMoving?.Invoke();
+                }
+                if(shoot > 0)
+                {
+                    player.Shooting?.Invoke(1);
                 }
             }
         }       
@@ -55,18 +75,23 @@ namespace LastWarBR{
             }
             FindReferences(spawnedCharacter);
             if(rigidbody != null)
+            {
                 canMove = true;
+            }
+            shootMovSpeed = speed * 0.5f;
         }
 
         private void FindReferences(GameObject player)
         {
+            this.player = player.GetComponent<PlayerController>();
             rigidbody = player.GetComponent<Rigidbody>();
         }
         private void ProcessInputs()
         {
-
             movementX = Input.GetAxis("Horizontal");
             movementY = Input.GetAxis("Vertical");
+
+            shoot = Input.GetAxis("Fire1");
         }
         #endregion
     }

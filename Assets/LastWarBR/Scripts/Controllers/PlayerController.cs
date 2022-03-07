@@ -9,13 +9,13 @@ namespace LastWarBR
         #region Declarations
         [SerializeField] private PlayerView playerView;
 
-        public Action IsMoving;
         #endregion
         #region Unity Functions
         #endregion
         #region Functions
         public void Init()
         {
+            base.Init();
             characterStats = GameManager.Instance.DataBase.GetPlayer();
             playerView.Init(this);
         }

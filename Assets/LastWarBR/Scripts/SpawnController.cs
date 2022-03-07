@@ -47,7 +47,7 @@ namespace LastWarBR
 
                     spawnedCharacter.name = "Player_" + DataBase.Player.playerName;
                     spawnedCharacter.tag = "Player";
-                    spawnedPlayer = spawnedCharacter.transform.Find("Controller").GetComponent<PlayerController>();
+                    spawnedPlayer = spawnedCharacter.GetComponent<PlayerController>();
                     spawnedPlayer.Init();
                     break;
                 case CharacterType.Enemy:
