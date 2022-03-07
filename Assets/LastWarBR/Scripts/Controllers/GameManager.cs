@@ -16,7 +16,7 @@ namespace LastWarBR
         public Action<GameObject, CharacterType> OnSpawn;
         #endregion
         #region Unity Functions
-        private void Awake()
+        private void Start()
         {
             Init();
         }

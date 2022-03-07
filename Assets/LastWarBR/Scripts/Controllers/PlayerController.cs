@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,8 @@ namespace LastWarBR
     {
         #region Declarations
         [SerializeField] private PlayerView playerView;
+
+        public Action IsMoving;
         #endregion
         #region Unity Functions
         #endregion

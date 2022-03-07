@@ -10,6 +10,7 @@ namespace LastWarBR
         public string playerName;
 
         [Range(0,3200)]
+        public short maxHealth;
         public short health;
         [Range(0,10)]
         public short moveSpeed;

@@ -24,7 +24,16 @@ namespace LastWarBR
         [SerializeField] public Action<short> GainHealth;
 
         #endregion
-        
+        #region Unity Functions
+        private void OnCollisionEnter(Collision collision)
+        {
+            BulletController bullet = collision.gameObject.GetComponent<BulletController>();
+            if(collision.gameObject.tag == "Bullet")
+            {
+
+            }
+        }
+        #endregion
         #region Functions
         protected void Init()
         {            
@@ -66,21 +75,41 @@ namespace LastWarBR
         {
             transform.position = spawnPoint.position;
         }
+        /// <summary>
+        /// Return the Player or Enemy Name
+        /// </summary>
+        /// <returns></returns>
         public string GetName()
         {
             return characterStats.playerName;
         }
+        /// <summary>
+        /// Set a name for the Player or enemy
+        /// </summary>
+        /// <param name="newName"></param>
         public void SetName(string newName)
         {
             characterStats.playerName = newName;
         }
+        /// <summary>
+        /// Get the current health of the player or enemy
+        /// </summary>
+        /// <returns></returns>
         public short GetHealthPoints()
         {
             return characterStats.health;
         }
+        /// <summary>
+        /// Set the current Health of the player or enemy
+        /// </summary>
+        /// <param name="newHealth"></param>
         public void SetHealthPoints(short newHealth) 
         {
             characterStats.health = newHealth;
+        }
+        public Object GetSelectedObject()
+        {
+            return characterStats.SelectedObject;
         }
         public Object GetObject(int objectPos)
         {
