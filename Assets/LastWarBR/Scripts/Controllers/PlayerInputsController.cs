@@ -29,8 +29,6 @@ namespace LastWarBR{
             {
                 ProcessInputs();
 
-                Debug.Log("The Jump Btn value is: " + shoot);
-
                 Vector3 movement = new Vector3(movementX, 0f, movementY);
                 movement.Normalize();
 

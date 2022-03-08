@@ -11,6 +11,7 @@ namespace LastWarBR
         [Header("Object components")]
         [SerializeField, Range(1,99)] private short uses = 1;
         [SerializeField] private bool unbreakable = false;
+        [SerializeField] private Sprite image;
         #endregion
         #region Encapsulation
         public short Uses
@@ -29,6 +30,7 @@ namespace LastWarBR
             }
         }
         public bool Unbreakable { get; set; }
+        public Sprite Image { get; set; }
         #endregion
         #region Constructor
         public Object()

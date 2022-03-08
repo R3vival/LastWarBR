@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uses: 1
   unbreakable: 0
+  image: {fileID: 21300000, guid: 220b0a76a30ab49fbb502e7d52ac540a, type: 3}
