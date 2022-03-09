@@ -130,6 +130,10 @@ namespace LastWarBR
             characterStats.SelectedObject = characterStats.inventory[objectPos];
             return characterStats.SelectedObject;
         }
+        public Object[] GetInventory()
+        {
+            return characterStats.inventory.ToArray();
+        }
         public void AddObject(Object newObject)
         {
             if (characterStats.inventory.Contains(newObject) )

@@ -15,6 +15,9 @@ namespace LastWarBR
         [SerializeField, Range(1,5)] private short areaEffect = 1;
         [SerializeField, Range(0,5)] private double coldown = 0;
         [SerializeField, Range(1,50)] private short ammo = 1;
+        [SerializeField, Range(1,100)] private short bulletSpeed = 1;
+
+        [SerializeField] private Material mat;
         #endregion
         #region Encapsulation
         public short Damage
@@ -92,6 +95,8 @@ namespace LastWarBR
                 }
             }
         }
+        public short BulletSpeed => bulletSpeed;
+        public Material Mat => mat;
         #endregion
         #region Constructor
         public Weapon(short damage = 50,short range = 10,short areaEffect = 1,short coldown = 1,short ammo = 1)

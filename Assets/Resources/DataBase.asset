@@ -18,8 +18,11 @@ MonoBehaviour:
     health: 250
     moveSpeed: 10
     turnSpeed: 5
-    SelectedObject: {fileID: 0}
-    inventory: []
+    SelectedObject: {fileID: 11400000, guid: ea40996ac8e04384bb71046a6b087492, type: 2}
+    inventory:
+    - {fileID: 11400000, guid: ea40996ac8e04384bb71046a6b087492, type: 2}
+    - {fileID: 11400000, guid: a99e480d534f6b64a98f78f9559b9f84, type: 2}
+    - {fileID: 11400000, guid: 476590667ecdd9f4f855c305a58a40fe, type: 2}
   Enemys:
   - playerName: ZombieR3vival
     maxHealth: 0

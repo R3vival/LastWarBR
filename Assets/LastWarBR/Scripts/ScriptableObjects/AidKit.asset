@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fbecdfedc0e624494436bcb849dbec, type: 3}
   m_Name: AidKit
   m_EditorClassIdentifier: 
+  type: 1
   uses: 3
   unbreakable: 0
   image: {fileID: 21300000, guid: b5fe434ff514e4707bda91d1568bc4b1, type: 3}

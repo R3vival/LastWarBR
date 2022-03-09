@@ -9,6 +9,7 @@ namespace LastWarBR
     {
         #region Declarations
         [Header("Object components")]
+        [SerializeField] private ObjectType type;
         [SerializeField, Range(1,99)] private short uses = 1;
         [SerializeField] private bool unbreakable = false;
         [SerializeField] private Sprite image;
@@ -30,7 +31,7 @@ namespace LastWarBR
             }
         }
         public bool Unbreakable { get; set; }
-        public Sprite Image { get; set; }
+        public Sprite Image { get => image; set => image = value; }
         #endregion
         #region Constructor
         public Object()
@@ -44,5 +45,11 @@ namespace LastWarBR
             Unbreakable = unbreakable;
         }
         #endregion
+    }
+    public enum ObjectType
+    {
+        Gun,
+        AidKit,
+        Key
     }
 }
