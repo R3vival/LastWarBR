@@ -7,7 +7,7 @@ namespace LastWarBR
     [Serializable]
     public class CharacterStats
     {
-        public string playerName;
+        public string characterName;
 
         [Range(0,3200)]
         public short maxHealth;
@@ -17,7 +17,8 @@ namespace LastWarBR
         [Range(0,10)]
         public short turnSpeed;
 
-        public Object SelectedObject;
+        public Object selectedWeapon;
+        public Object lastUsedObject;
         public List<Object> inventory;
     }
 }

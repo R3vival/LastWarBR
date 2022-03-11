@@ -27,16 +27,13 @@ namespace LastWarBR
 
         public Action IsNotMoving;
 
+        public CharacterStats CharacterStats
+        {
+            get => characterStats;
+            set => characterStats = value;
+        }
         #endregion
         #region Unity Functions
-        private void OnCollisionEnter(Collision collision)
-        {
-            BulletController bullet = collision.gameObject.GetComponent<BulletController>();
-            if(collision.gameObject.tag == "Bullet")
-            {
-                //TODO die
-            }
-        }
         #endregion
         #region Functions
         protected void Init()
@@ -52,6 +49,9 @@ namespace LastWarBR
                     rigidBody = gameObject.AddComponent<Rigidbody>();
                 }
             }
+
+            characterStats.selectedWeapon = characterStats.inventory.FirstOrDefault(x => x.Type == ObjectType.Gun) as Weapon;
+            characterStats.lastUsedObject = characterStats.selectedWeapon;
         }
         /// <summary>
         /// Heals the player with the given points
@@ -63,6 +63,8 @@ namespace LastWarBR
         protected void HealPlayer(short pointsHealed = 50)
         {
             characterStats.health += pointsHealed;
+
+            GainHealth?.Invoke(pointsHealed);
         }
         /// <summary>
         /// Deals damage to the player with the given points
@@ -72,6 +74,12 @@ namespace LastWarBR
         public void TakeDamage(short damage = 50)
         {
             characterStats.health -= damage;
+            LoseHealth?.Invoke(damage);
+
+            if(characterStats.health <= 0 )
+            {
+                GameManager.Instance.Respawn?.Invoke();
+            }
         }
         /// <summary>
         /// Reset the player to a Given Position
@@ -87,7 +95,7 @@ namespace LastWarBR
         /// <returns></returns>
         public string GetName()
         {
-            return characterStats.playerName;
+            return characterStats.characterName;
         }
         /// <summary>
         /// Set a name for the Player or enemy
@@ -95,7 +103,7 @@ namespace LastWarBR
         /// <param name="newName"></param>
         public void SetName(string newName)
         {
-            characterStats.playerName = newName;
+            characterStats.characterName = newName;
         }
         /// <summary>
         /// Get the max health of the player or enemy
@@ -120,20 +128,37 @@ namespace LastWarBR
         public void SetHealthPoints(short newHealth) 
         {
             characterStats.health = newHealth;
-        }
+        }        
+        /// <summary>
+        /// Get the current selected Object
+        /// </summary>
+        /// <returns></returns>
         public Object GetSelectedObject()
         {
-            return characterStats.SelectedObject;
+            return characterStats.lastUsedObject;
         }
+        /// <summary>
+        /// Get object from inventory
+        /// </summary>
+        /// <param name="objectPos"></param>
+        /// <returns></returns>
         public Object GetObject(int objectPos)
         {
-            characterStats.SelectedObject = characterStats.inventory[objectPos];
-            return characterStats.SelectedObject;
+            characterStats.lastUsedObject = characterStats.inventory[objectPos];
+            return characterStats.lastUsedObject;
         }
+        /// <summary>
+        /// Get all inventory
+        /// </summary>
+        /// <returns></returns>
         public Object[] GetInventory()
         {
             return characterStats.inventory.ToArray();
         }
+        /// <summary>
+        /// Add an object to the inventory
+        /// </summary>
+        /// <param name="newObject"></param>
         public void AddObject(Object newObject)
         {
             if (characterStats.inventory.Contains(newObject) )
@@ -141,11 +166,9 @@ namespace LastWarBR
                 characterStats.inventory.Find(x => x.name == newObject.name).Uses++;
                 return;
             }
-            characterStats.inventory.Add(newObject);
-            
+            characterStats.inventory.Add(newObject);            
         }
         #endregion
-
         
         #endregion
     }

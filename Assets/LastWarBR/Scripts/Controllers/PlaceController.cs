@@ -10,12 +10,10 @@ namespace LastWarBR
         [SerializeField] private DoorController door;
         [SerializeField] private GameObject roof;
 
-        [SerializeField] private bool isOpen;
-
         [Space] 
         [SerializeField] private Animator animator;
 
-        public Action<bool> UnlockedDoor;
+        public Action UnlockedDoor;
         #endregion
         #region Unity Functions
         private void Awake()
@@ -61,9 +59,8 @@ namespace LastWarBR
             }
         }
 
-        private void OpenDoor(bool isOpen)
+        private void OpenDoor()
         {
-            this.isOpen = isOpen;            
             animator.SetBool("DoorOpened", true);
         }
         public void HideDoor()

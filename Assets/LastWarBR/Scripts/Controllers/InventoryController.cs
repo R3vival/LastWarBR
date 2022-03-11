@@ -67,10 +67,10 @@ namespace LastWarBR
         {
             List<Object> tempList = objects.ToList();
 
-            int index = tempList.FindIndex(x => x == GameManager.Instance.DataBase.Player.SelectedObject);
+            int index = tempList.FindIndex(x => x == GameManager.Instance.DataBase.Player.lastUsedObject);
             itemsCollection[index].Deselect();            
 
-            GameManager.Instance.DataBase.Player.SelectedObject = newObject;
+            GameManager.Instance.DataBase.Player.lastUsedObject = newObject;
         }
         #endregion
     }

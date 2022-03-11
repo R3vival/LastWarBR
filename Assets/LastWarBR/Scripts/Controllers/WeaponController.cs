@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,15 +33,15 @@ namespace LastWarBR
             if ( !canShoot )
             {
                 weaponCd += Time.deltaTime;
-                if ( weaponCd > weapon.Coldown)
+                if ( weaponCd > weapon.Coldown )
                 {
                     canShoot = true;
                     shoot = false;
 
                 }
             }
-            if(shoot)
-            {
+            if ( shoot )
+            {                
                 canShoot = false;
             }
         }
@@ -49,15 +49,23 @@ namespace LastWarBR
         #region Functions
         private void Init(GameObject go,CharacterType type)
         {
+
             CharacterBase character = go.GetComponent<CharacterBase>();
 
-            FindReferences();
 
             gunner = character;
-            this.weapon = character.GetSelectedObject() as Weapon;
+            weapon = character.GetSelectedObject() as Weapon;
 
-            renderer.material = weapon.Mat;
-            for (int i = 0; i< 10; i++ )
+            FindReferences();
+            if ( weapon == null || weapon.Type != ObjectType.Gun )
+            {
+                weapon = (Weapon)character.GetInventory().FirstOrDefault(x => x.Type == ObjectType.Gun);
+            }
+            if ( weapon.Mat != null )
+            {
+                renderer.material = weapon.Mat;
+            }
+            for ( int i = 0; i < 10; i++ )
             {
                 CreateBullet();
             }
@@ -72,7 +80,7 @@ namespace LastWarBR
             }
             if ( shootPoint == null )
             {
-                shootPoint = transform.Find("ShootPoint");
+                shootPoint = gunner.transform.Find("View").transform.Find("ShootPoint");
             }
             if ( bulletPrefab == null )
             {
@@ -83,7 +91,7 @@ namespace LastWarBR
         {
             BulletController newBullet;
 
-            newBullet = Instantiate(bulletPrefab, shootPoint.position,shootPoint.rotation).GetComponent<BulletController>();
+            newBullet = Instantiate(bulletPrefab,shootPoint.position,shootPoint.rotation).GetComponent<BulletController>();
             newBullet.Init(gunner);
 
             poolBullets.Enqueue(newBullet);
@@ -92,18 +100,19 @@ namespace LastWarBR
         }
         private void Shoot(int blend)
         {
-            if (!canShoot )
+            if ( !canShoot )
             {
                 return;
             }
-            BulletController temp =  GetFromBulletPool();           
+            BulletController temp = GetFromBulletPool();
 
             temp.Enable(shootPoint);
+            weaponCd = 0;
             shoot = true;
         }
         private void EnqueueBullets()
         {
-            foreach(BulletController bullet in bulletsCreated )
+            foreach ( BulletController bullet in bulletsCreated )
             {
                 if ( !bullet.View.gameObject.activeSelf )
                 {
@@ -114,7 +123,7 @@ namespace LastWarBR
         private BulletController GetFromBulletPool()
         {
             BulletController response;
-            if(poolBullets.Count <= 0 )
+            if ( poolBullets.Count <= 0 )
             {
                 CreateBullet();
             }

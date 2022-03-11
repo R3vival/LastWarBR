@@ -19,7 +19,7 @@ MonoBehaviour:
   damage: 50
   range: 10
   areaEffect: 1
-  coldown: 1
+  coldown: 0.5
   ammo: 1
   bulletSpeed: 1
   mat: {fileID: 2100000, guid: f740357c7b1ba4151af35fb05a061f54, type: 2}

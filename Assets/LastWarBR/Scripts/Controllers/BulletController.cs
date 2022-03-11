@@ -31,6 +31,15 @@ namespace LastWarBR
                 }
             }
         }
+        private void OnTriggerEnter(Collider other)
+        {
+            Debug.LogWarning("Collides with: " + other.gameObject.name);
+            if ( other.gameObject.GetComponent<CharacterBase>() != null && other.gameObject.GetComponent<CharacterBase>() != owner )
+            {
+                other.gameObject.GetComponent<CharacterBase>().TakeDamage(weaponUsed.Damage);
+            }
+            Disable();
+        }
         #endregion
         #region Functions
         public void Init(CharacterBase bulletOwner)
@@ -53,7 +62,7 @@ namespace LastWarBR
         public void Enable(Transform spawnPoint)
         {
             transform.position = spawnPoint.position;
-            transform.rotation = spawnPoint.rotation;
+            transform.rotation = spawnPoint.rotation.normalized;            
 
             this.spawnPoint = spawnPoint.position;
             view.gameObject.SetActive(true);

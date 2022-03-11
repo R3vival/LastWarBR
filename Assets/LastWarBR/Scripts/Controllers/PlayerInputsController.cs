@@ -15,25 +15,31 @@ namespace LastWarBR{
         private float shoot;
         private float movementY;
         private float movementX;
-        private float currentSpeed;
+        private bool useObject;
+        private bool useAidKit;
         private float shootMovSpeed;
         #endregion
         #region Unity Functions
         private void Awake()
         {
-            GameManager.Instance.OnSpawn += Init;
+            GameManager.Instance.OnSpawn += Init;            
         }
         private void FixedUpdate()
         {
             if (canMove)
             {
-                ProcessInputs();
+#if PLATFORM_STANDALONE || UNITY_EDITOR
+                ProcessInputsPC();
+#endif
+#if UNITY_ANDROID
+                ProcessInputsMovile();
+#endif
 
                 Vector3 movement = new Vector3(movementX, 0f, movementY);
                 movement.Normalize();
 
                 //Movement
-                currentSpeed = speed;
+                float currentSpeed = speed;
                 if (shoot > 0)
                 {
                     currentSpeed = shootMovSpeed;
@@ -57,6 +63,17 @@ namespace LastWarBR{
                 {
                     player.IsNotMoving?.Invoke();
                 }
+
+                if ( useObject )
+                {
+                    GameManager.Instance.Interact?.Invoke();
+                }
+
+                if ( useAidKit )
+                {
+                    GameManager.Instance.UseAidKit?.Invoke();
+                }
+
                 if(shoot > 0)
                 {
                     player.Shooting?.Invoke(1);
@@ -84,13 +101,19 @@ namespace LastWarBR{
             this.player = player.GetComponent<PlayerController>();
             rigidbody = player.GetComponent<Rigidbody>();
         }
-        private void ProcessInputs()
+        private void ProcessInputsPC()
         {
             movementX = Input.GetAxis("Horizontal");
             movementY = Input.GetAxis("Vertical");
 
             shoot = Input.GetAxis("Fire1");
+            useObject = Input.GetKey(KeyCode.E);
+            useAidKit = Input.GetKey(KeyCode.Q);
         }
-        #endregion
+        private void ProcessInputsMovile()
+        {
+
+        }
+#endregion
     }
 }

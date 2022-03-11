@@ -14,6 +14,9 @@ namespace LastWarBR
         //Actions
         public Action Initialize;
         public Action<GameObject, CharacterType> OnSpawn;
+        public Action Interact;
+        public Action UseAidKit;
+        public Action Respawn;
         #endregion
         #region Unity Functions
         private void Start()
@@ -27,7 +30,6 @@ namespace LastWarBR
             FindReferences();
 
             Initialize?.Invoke();
-
         }
         private void FindReferences()
         {
@@ -39,8 +41,6 @@ namespace LastWarBR
                 #endif
             }
         }
-
-
         #endregion
     }
 }

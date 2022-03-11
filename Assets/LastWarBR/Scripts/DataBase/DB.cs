@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace LastWarBR
@@ -24,6 +25,22 @@ namespace LastWarBR
         public Object[] GetAllObjects()
         {
             return Objects;
+        }
+        public Object GetKey()
+        {
+            Object key = Player.inventory.FirstOrDefault(x => x.Type == ObjectType.Key && x.Uses > 0);
+            if(key != null )
+            {
+                return key;
+            }
+            return null;
+        }
+        public void UseObject(Object obj)
+        {
+            if( obj.Type != ObjectType.Gun )
+            {
+                obj.Uses--;
+            }
         }
     }    
 }

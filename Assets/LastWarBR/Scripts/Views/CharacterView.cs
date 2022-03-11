@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace LastWarBR
 {
-    public class PlayerView : MonoBehaviour
+    public class CharacterView : MonoBehaviour
     {
         #region Declarations
         #region HUD
@@ -99,7 +99,10 @@ namespace LastWarBR
 
             healthSlider.value = health;
         }
-
+        /// <summary>
+        /// Play the corresponding animation
+        /// </summary>
+        /// <param name="action"></param>
         private void PlayAnim(int action)
         {
             animator.SetBool("Moving", true);
@@ -112,6 +115,9 @@ namespace LastWarBR
             }
             animator.SetFloat("Blend", currentBlend);
         }
+        /// <summary>
+        /// Stop all animations and set on idle anim
+        /// </summary>
         private void StopAnim()
         {
             animator.SetBool("Moving", false);

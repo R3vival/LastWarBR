@@ -10,7 +10,7 @@ namespace LastWarBR
         #region Declarations
         [Header("Object components")]
         [SerializeField] private ObjectType type;
-        [SerializeField, Range(1,99)] private short uses = 1;
+        [SerializeField, Range(0,99)] private short uses = 1;
         [SerializeField] private bool unbreakable = false;
         [SerializeField] private Sprite image;
         #endregion
@@ -20,7 +20,7 @@ namespace LastWarBR
             get => uses;
             set
             {
-                if ( value > 0 )
+                if ( value >= 0 )
                 {
                     uses = value;
                 }
@@ -32,6 +32,7 @@ namespace LastWarBR
         }
         public bool Unbreakable { get; set; }
         public Sprite Image { get => image; set => image = value; }
+        public ObjectType Type { get => type; set => type = value; }
         #endregion
         #region Constructor
         public Object()
